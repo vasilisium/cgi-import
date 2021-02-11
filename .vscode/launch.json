@@ -1,0 +1,43 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "run",
+      "type": "python",
+      "request": "launch",
+      "program": "run.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "whatch",
+      "type": "python",
+      "request": "launch",
+      "program": "watch.py",
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "utils.py",
+      "type": "python",
+      "request": "launch",
+      "program": "utils.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "PowerShell Launch Script",
+      "type": "PowerShell",
+      "request": "launch",
+      "script": "${workspaceFolder}/zipAll.ps1",
+      "cwd": "${workspaceFolder}/zipAll.ps1"
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "merge.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

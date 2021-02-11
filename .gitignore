@@ -1,0 +1,7 @@
+/env
+/xml*
+/zip*
+.env
+/__pycache__
+/responses
+resp_*.xml

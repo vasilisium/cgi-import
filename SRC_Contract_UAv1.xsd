@@ -1,0 +1,1317 @@
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Sigridur Hallgrimsdottir (private) -->
+<xs:schema xmlns="http://www.datapump.cig.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datapump.cig.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Records">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Contract" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:sequence>
+							<xs:element name="General">
+								<xs:complexType>
+									<xs:sequence>
+                    <xs:element name="ContractCode" type="non-empty-string50"/>
+										<xs:element name="DateOfSignature" type="DateType"/>
+										<xs:element name="CreditPurpose" minOccurs="0">
+											<xs:complexType>
+												<xs:attribute name="id" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NegativeStatus" minOccurs="0">
+											<xs:complexType>
+												<xs:attribute name="id" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Recognition" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ApplicationDate" type="DateType" minOccurs="0"/>
+										<xs:element name="StartDate" type="DateType"/>
+										<xs:element name="Procedure" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ExpectedEndDate" type="DateType"/>
+										<xs:element name="FactualEndDate" type="DateType" minOccurs="0"/>
+										<xs:element name="Collaterals" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Collateral" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Value">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:decimal">
+																				<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Address" type="AddressType" minOccurs="0"/>
+																<xs:element name="OwnerId" type="IdentificationType" minOccurs="0"/>
+															</xs:sequence>
+															<xs:attribute name="typeId" type="non-empty-integer" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Subjects">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Subject" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Comment" minOccurs="0">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Entity">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element name="Individual">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="FirstName">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Surname">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="FathersName" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Classification">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="DateOfPrivateEntrepreneurRegistration" type="DateType" minOccurs="0"/>
+																						<xs:element name="BirthSurname" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="DateOfBirth" type="DateType"/>
+																						<xs:element name="PlaceOfBirth" type="TextType" minOccurs="0"/>
+																						<xs:element name="Residency">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Citizenship">
+																							<xs:complexType>
+																								<xs:attribute name="code" type="non-empty-string" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="NegativeStatus" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Education" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="EducationallyQualifyingLevel" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="AcademicDegree" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="AcademicStatus" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="MaritalStatus" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Identifications">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Communications">
+																							<xs:complexType>
+																								<xs:sequence maxOccurs="unbounded">
+																									<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Addresses">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Address" type="AddressType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Employments" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="CurrentEmployment" minOccurs="0">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="JobTitle" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Position">
+																													<xs:complexType>
+																														<xs:attribute name="id" type="xs:int" use="required"/>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="CompanyName" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string500">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Identifications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="StartDate" type="DateType" minOccurs="0"/>
+																												<xs:element name="Addresses" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Address" type="AddressType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Communications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="PreviousEmployment" minOccurs="0" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="JobTitle" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string500">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Position">
+																													<xs:complexType>
+																														<xs:attribute name="id" type="xs:int" use="required"/>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="CompanyName" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string500">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Identifications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="StartDate" type="DateType" minOccurs="0"/>
+																												<xs:element name="Addresses" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Address" type="AddressType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Communications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="EndDate" type="DateType" minOccurs="0"/>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Dependants" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Dependant" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:attribute name="typeId" type="xs:int" use="required"/>
+																											<xs:attribute name="count" type="xs:int" use="required"/>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="EconomicActivity" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="non-empty-string" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																					<xs:attribute name="gender" type="xs:int" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Company">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Name">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:simpleContent>
+																												<xs:extension base="non-empty-string">
+																													<xs:attribute name="language" type="non-empty-string" use="required"/>
+																												</xs:extension>
+																											</xs:simpleContent>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="TradeName">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:simpleContent>
+																												<xs:extension base="non-empty-string">
+																													<xs:attribute name="language" type="non-empty-string" use="required"/>
+																												</xs:extension>
+																											</xs:simpleContent>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Abbreviation">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Text" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:simpleContent>
+																												<xs:extension base="non-empty-string">
+																													<xs:attribute name="language" type="non-empty-string" use="required"/>
+																												</xs:extension>
+																											</xs:simpleContent>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="LegalForm" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Ownership">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="RegistrationDate" type="DateType"/>
+																						<xs:element name="RegistrationAuthority" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="EconomicActivity" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="non-empty-string" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Licenses" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="License" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="Number" type="non-empty-string"/>
+																												<xs:element name="Date" type="DateType" minOccurs="0"/>
+																												<xs:element name="EconomicActivity" minOccurs="0">
+																													<xs:complexType>
+																														<xs:attribute name="id" type="non-empty-string" use="required"/>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Authority" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																														<xs:attribute name="id" type="non-empty-string" use="optional"/>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="EmployeeCount" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Residency" minOccurs="0">
+																							<xs:complexType>
+																								<xs:attribute name="id" type="xs:int" use="required"/>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Identifications">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Communications" minOccurs="1">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Addresses">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Address" type="AddressType" maxOccurs="unbounded"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="Management" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="GeneralManager">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="FirstName">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Surname">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="FathersName" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="BirthSurname" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Identifications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Communications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="ChiefAccountant" minOccurs="0">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="FirstName">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Surname">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="FathersName" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="BirthSurname" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Text" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:simpleContent>
+																																		<xs:extension base="non-empty-string">
+																																			<xs:attribute name="language" type="non-empty-string" use="required"/>
+																																		</xs:extension>
+																																	</xs:simpleContent>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Identifications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Identification" type="IdentificationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="Communications" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="Communication" type="CommunicationType" maxOccurs="unbounded"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																					<xs:attribute name="statusId" type="xs:int" use="optional"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="roleId" type="xs:int" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Type">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="NonInstalment">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CreditLimit">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="CreditUsage">
+																				<xs:complexType>
+																					<xs:attribute name="id" type="xs:int" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="UsedAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Overdraft">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Instalment">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TotalAmount">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InstalmentAmount">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InstalmentCount" type="xs:int"/>
+													<xs:element name="InterestRate" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="OutstandingInstalmentCount" type="xs:int"/>
+																			<xs:element name="OutstandingAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="OverdueInstalmentCount" type="xs:int"/>
+																			<xs:element name="OverdueAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+																			<xs:element name="ExpirationCount" type="xs:int" minOccurs="0"/>
+																			<xs:element name="DueInterestCount" type="xs:int"/>
+																			<xs:element name="DueInterestAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int"/>
+												<xs:attribute name="paymentPeriodId" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Credit">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CreditLimit">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="CreditUsage">
+																				<xs:complexType>
+																					<xs:attribute name="id" type="xs:int" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ResidualAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="OverdueAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int"/>
+												<xs:attribute name="paymentPeriodId" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Leasing">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TotalAmount">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InstalmentAmount">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="LeasingType">
+														<xs:complexType>
+															<xs:attribute name="id" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="LeasingSubject">
+														<xs:complexType>
+															<xs:attribute name="id" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="RedemptionDate" type="DateType" minOccurs="0"/>
+													<xs:element name="SumOfRedemption" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="OutstandingInstalmentCount" type="xs:int"/>
+																			<xs:element name="OutstandingAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="OverdueInstalmentCount" type="xs:int" minOccurs="0"/>
+																			<xs:element name="OverdueAmount" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="SumOfExtraFees" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int" use="optional"/>
+												<xs:attribute name="paymentPeriodId" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Insurance">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="InsuranceRisks">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InsuranceTariff" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InstalmentAmount" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InsuranceType">
+														<xs:complexType>
+															<xs:attribute name="id" type="xs:int" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InsuranceValue" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="non-empty-string">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Annuity" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FranchisPercentage" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="FranchisValue" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="InvestmentProfit" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="IndexOfAmount" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="Bonus" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="SumOfPrepaidPayments" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:decimal">
+																	<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="DateOfExpirationOfLastPayment" type="DateType" minOccurs="0"/>
+													<xs:element name="InsurerChangeInfo" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Receiver" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Vehicle" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Code" type="non-empty-string"/>
+																<xs:element name="NumberOfBook" type="non-empty-string" minOccurs="0"/>
+																<xs:element name="RegistrationPlate" type="non-empty-string" minOccurs="0"/>
+																<xs:element name="Brand" type="TextType" minOccurs="0"/>
+																<xs:element name="Model" type="TextType" minOccurs="0"/>
+																<xs:element name="Year" type="year-string" minOccurs="0"/>
+															</xs:sequence>
+															<xs:attribute name="type" type="xs:int" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Property" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Address" type="AddressType"/>
+															</xs:sequence>
+															<xs:attribute name="type" type="xs:int" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Claims">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Claim" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Code" type="non-empty-string"/>
+																			<xs:element name="ClaimDateOral" type="DateType" minOccurs="0"/>
+																			<xs:element name="ClaimDate" type="DateType"/>
+																			<xs:element name="EventDate" type="DateType"/>
+																			<xs:element name="CauseOfEvent">
+																				<xs:complexType>
+																					<xs:attribute name="id" type="xs:int" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ConfirmDocument" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ReductionOfPayoff" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FranchisPercentage" type="xs:decimal" minOccurs="0"/>
+																			<xs:element name="FranchisSum" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PaidCompensation" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																							<xs:attribute name="date" type="DateType" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="RefusalOfPayment" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+																					</xs:sequence>
+																					<xs:attribute name="date" type="DateType" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Fraud" minOccurs="0">
+																				<xs:complexType>
+																					<xs:attribute name="typeId" type="xs:int" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="OutstandingInstalmentCount" type="xs:int" minOccurs="0"/>
+																			<xs:element name="OutstandingAmount" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="OverdueInstalmentCount" type="xs:int" minOccurs="0"/>
+																			<xs:element name="OverdueAmount" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int" use="optional"/>
+												<xs:attribute name="paymentPeriodId" type="xs:int" use="optional"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Business">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="BusinessTypeId" type="xs:int"/>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="OverdueInstalmentCount" type="xs:int"/>
+																			<xs:element name="OverdueAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="DuePaymentDate" type="DateType"/>
+																			<xs:element name="RealPaymentDate" type="DateType" minOccurs="0"/>
+																			<xs:element name="PenaltyAmount" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PenaltyDate" type="DateType" minOccurs="0"/>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int"/>
+												<xs:attribute name="paymentPeriodId" type="xs:int" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="BusinessInvoice">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="BusinessTypeId" type="xs:int"/>
+													<xs:element name="Records">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Record" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="OverdueInstalmentCount" type="xs:int"/>
+																			<xs:element name="OverdueAmount">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="DuePaymentDate" type="DateType" minOccurs="0"/>
+																			<xs:element name="RealPaymentDate" type="DateType" minOccurs="0"/>
+																			<xs:element name="PenaltyAmount" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:decimal">
+																							<xs:attribute name="currency" type="non-empty-string" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PenaltyDate" type="DateType" minOccurs="0"/>
+																		</xs:sequence>
+																		<xs:attribute name="accountingDate" type="DateType" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="paymentMethodId" type="xs:int"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="operation" type="xs:int" use="required"/>
+						<xs:attribute name="phaseId" type="xs:int" use="required"/>
+						<xs:attribute name="suspensionCauseId" type="xs:int"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TextType">
+		<xs:simpleContent>
+			<xs:extension base="non-empty-string">
+				<xs:attribute name="language" type="non-empty-string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IdentificationType">
+		<xs:sequence>
+			<xs:element name="Number" type="non-empty-string"/>
+			<xs:element name="RegistrationDate" type="DateType" minOccurs="0"/>
+			<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
+			<xs:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+			<xs:element name="Authority" type="TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="typeId" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="Street">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostalCode" minOccurs="0">
+		          <xs:simpleType>
+          			<xs:restriction base="xs:string">
+          				<xs:minLength value="1"/>
+            				<xs:maxLength value="10"/>
+         			 </xs:restriction>
+       			  </xs:simpleType>        
+   			</xs:element>
+
+			<xs:element name="PostBox" type="non-empty-string" minOccurs="0"/>
+			<xs:element name="AdditionalInformation" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="typeId" type="xs:int" use="required"/>
+		<xs:attribute name="locationId" type="xs:int" use="optional"/>
+	</xs:complexType>
+  <xs:simpleType name="DateType">
+    <xs:restriction base="xs:date">
+      <xs:maxInclusive value="2198-01-01"/>
+      <xs:minInclusive value="1900-01-01"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+	<xs:complexType name="CommunicationType">
+		<xs:simpleContent>
+			<xs:extension base="non-empty-string100">
+				<xs:attribute name="typeId" type="xs:int" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="non-empty-string">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="non-empty-string50">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="50"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+	<xs:simpleType name="non-empty-string100">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="non-empty-string500">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="450"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+	<xs:simpleType name="year-string">
+		<xs:restriction base="non-empty-string">
+			<xs:pattern value="[0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="non-empty-decimal">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="non-empty-integer">
+		<xs:restriction base="xs:int">
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
