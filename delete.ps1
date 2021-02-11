@@ -1,1 +1,0 @@
-Remove-Item $args[0]
