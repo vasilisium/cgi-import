@@ -1,17 +1,16 @@
 import sys
+import os
+import logging
 
 # Variables
-import os
-
 USR=os.environ['USR']
 PWD=os.environ['PWD']
+url = 'https://test2.credithistory.com.ua/DataPump/Service.asmx'
 
 # watchdog
 delete_after_work=True
 
 # Logging
-import logging
-
 logging.basicConfig(
   filename='import.log',
   level=logging.INFO,
@@ -27,8 +26,6 @@ logging.basicConfig(
 # )
 
 logger = logging.getLogger()
-
-stdout_handler = logging.StreamHandler(sys.stdout)
-logger.addHandler(stdout_handler)
+logger.addHandler(logging.StreamHandler(sys.stdout))
 
 

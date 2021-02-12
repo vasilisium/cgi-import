@@ -12,10 +12,10 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "whatch",
+      "name": "my_request.py",
       "type": "python",
       "request": "launch",
-      "program": "watch.py",
+      "program": "my_request.py",
       "console": "integratedTerminal",
     },
     {

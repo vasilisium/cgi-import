@@ -56,6 +56,8 @@ class WatchDog(threading.Thread):
     self.observer = Observer()
     for path in self.handlers.keys():
       self.observer.schedule(self.handlers[path], path)
+      if not os.path.exists(path):
+        os.mkdir(path)
 
     signal.signal(signal.SIGINT, self.signal_handler)
 

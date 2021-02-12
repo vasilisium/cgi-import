@@ -1,6 +1,7 @@
 import os
 import base64
 from ntpath import basename
+from datetime import datetime
 from zipfile import ZipFile, ZIP_DEFLATED
 
 import xmlschema
@@ -16,7 +17,6 @@ def validate(xmlFile, schemaFile):
   result = schema.is_valid(xmlFile)
   if not result: 
     log.info('%s Invalid', fileNmae)
-    log.error('%s Invalid', fileNmae)
   return result
 
 def zip(file):
@@ -26,14 +26,35 @@ def zip(file):
   archive.write(file)
   archive.close()
 
-def to_bytes(file):
-  f = open(file, 'rb')
+def zip1(file):
+  import subprocess
+  zipper = subprocess.run(os.path.join('C:\\Program Files\\7-Zip\\',"7z.exe"),f'a  mx0 ')
+
+
+def toBase64(filePath):
+  f = open(filePath, 'rb')
   f_bytes = base64.b64encode(f.read()).decode('utf8')
   return f_bytes
 
-def getXmlValues(file):
-  xml = open(file, 'r').read()
-  xml = bytes(bytearray(xml, encoding='utf-8'))
+def removeCredentials(data):
+  # TODO: removeCredentials from output xml file
+  return data
+
+def writeXml(fileName, data):
+  dt = datetime.now().strftime('%Y-%m-%d#%H-%M-%S-%f')[:-3]
+  new_filePath = f'./responses/{fileName}#{dt}.xml'
+  if not os.path.exists(os.path.dirname(new_filePath)):
+    os.makedirs(os.path.dirname(new_filePath))
+  
+  with open(new_filePath, 'w') as xml:
+    new_data = removeCredentials(data)
+    xml.write(new_data)
+
+  return new_filePath
+
+def getXmlValues(xmlText):
+  # xml = open(file, 'r').read()
+  xml = bytes(bytearray(xmlText, encoding='utf-8'))
   xml = etree.XML(xml)
 
   msg = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch/Message/Description').text
@@ -44,7 +65,10 @@ def getXmlValues(file):
   ba_statName = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch').attrib['StatusName']
   return f'{msg_TypeName}: {msg}\nBatch: id {ba_id} status {ba_statId}\n{ba_statName}'
   
+def formatXML(xmlText):
+  import xml.dom.minidom
+  xml = xml.dom.minidom.parseString(xmlText)
+  return xml.toprettyxml()
 
 if __name__ == '__main__':
-  res = getXmlValues('./responses/5_3581801921_1#2021-02-11#22-34-37-370.xml')
-  print(res)
+  zip1('./xml/5_3581801921_1.xml')

@@ -5,3 +5,4 @@
 /__pycache__
 /responses
 resp_*.xml
+*.log

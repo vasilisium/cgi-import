@@ -1,11 +1,10 @@
 import os
-# import time
 from aiohttp import ClientSession
 import asyncio
 from datetime import datetime
 from ntpath import basename
 
-from utils import to_bytes
+from utils import toBase64, formatXML
 
 import config
 log = config.logger
@@ -91,7 +90,7 @@ def doWork(zip_bytes):
     writeXml(removeCredentials(data))
 
 def send_zip(zipFile):
-  zip_data = to_bytes(zipFile)
+  zip_data = toBase64(zipFile)
 
   # loop = asyncio.get_event_loop()
   loop = asyncio.new_event_loop()
@@ -101,11 +100,11 @@ def send_zip(zipFile):
   filename = basename(zipFile)
   filename = os.path.splitext(filename)[0]
 
-  resultXML = writeXml(filename, res[1])
+  normalizedXML = formatXML(res[1])
+  resultXML = writeXml(filename, normalizedXML)
   res[1] = resultXML
   log.info('%s Posted with status %s and response in file %s', filename, res[0], resultXML)
   
-  # time.sleep(1)
   return res
 
 if __name__ == '__main__': 
