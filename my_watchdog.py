@@ -3,18 +3,19 @@ from watchdog.events import PatternMatchingEventHandler
 import signal
 import sys
 import threading
-import ntpath
 import os
+
+from utils import getFileName
 
 import config
 log = config.logger
 
 def workWrapper(work, filePath, delete_after_work=config.delete_after_work):
-  filename = ntpath.basename(filePath)
+  filename = getFileName(filePath)
 
-  log.info('%s Start processing', filename)
+  log.info('%s\t\tStart processing', filename)
   result = work(filePath)
-  log.info('%s Processing finished with result %s', filename, result)
+  log.info('%s\t\tProcessing finished with result %s', filename, result)
 
   if delete_after_work and result:
     os.remove(filePath)
@@ -28,18 +29,18 @@ class EventHandler_WithLog(PatternMatchingEventHandler):
   def on_created(self, event, after_modification=False):
     super(EventHandler_WithLog, self).on_created(event)
     
-    filename = ntpath.basename(event.src_path)
+    filename = getFileName(event.src_path)
     event_label = 'Detected'
-    if after_modification:
-      event_label = 'Modificated'
-    log.info("%s %s", filename, event_label)
+    # if after_modification:
+    #   event_label = 'Modificated'
+    log.info("%s\t\t%s", filename, event_label)
     if self.work:
       workWrapper(self.work, event.src_path, self.delete_after_work)
 
   def on_deleted(self, event):
     super(EventHandler_WithLog, self).on_deleted(event)
-    filename = ntpath.basename(event.src_path)
-    log.info("%s Done", filename)
+    filename = getFileName(event.src_path)
+    log.info("%s\t\tDone", filename)
   
   # def on_modified(self, event):
   #   super(EventHandler_WithLog, self).on_modified(event)

@@ -1,14 +1,19 @@
 import os
 import base64
 from ntpath import basename
-from datetime import datetime
 from zipfile import ZipFile, ZIP_DEFLATED
-
+from datetime import datetime
 import xmlschema
 from lxml import etree
 
 import config
 log = config.logger
+
+def getFileName(filePath):
+  return basename(filePath)
+
+def getFileBaseName(fileName):
+  return os.path.splitext(fileName)[0]
 
 def validate(xmlFile, schemaFile):
   fileNmae = basename(xmlFile)
@@ -16,7 +21,7 @@ def validate(xmlFile, schemaFile):
   schema = xmlschema.XMLSchema(schemaFile)
   result = schema.is_valid(xmlFile)
   if not result: 
-    log.info('%s Invalid', fileNmae)
+    log.info('%s\t\tInvalid', fileNmae)
   return result
 
 def zip(file):
@@ -28,7 +33,11 @@ def zip(file):
 
 def zip1(file):
   import subprocess
-  zipper = subprocess.run(os.path.join('C:\\Program Files\\7-Zip\\',"7z.exe"),f'a  mx0 ')
+  fileName = getFileBaseName(getFileName(file))
+  zipPath = f'./zip/{fileName}.zip'
+  zPath = os.path.join('C:\\Program Files\\7-Zip\\',"7z.exe")
+  subprocess.run(f'{zPath} a {zipPath} {file} mx0 ')
+  return zipPath
 
 
 def toBase64(filePath):
@@ -57,13 +66,19 @@ def getXmlValues(xmlText):
   xml = bytes(bytearray(xmlText, encoding='utf-8'))
   xml = etree.XML(xml)
 
-  msg = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch/Message/Description').text
-  msg_TypeName = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch/Message').attrib['TypeName']
+  batch = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch')
+  ba_id = batch.attrib['Id']
+  ba_statId = batch.attrib['StatusId']
+  ba_statName = batch.attrib['StatusName']
 
-  ba_id = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch').attrib['Id']
-  ba_statId = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch').attrib['StatusId']
-  ba_statName = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch').attrib['StatusName']
-  return f'{msg_TypeName}: {msg}\nBatch: id {ba_id} status {ba_statId}\n{ba_statName}'
+  msg = xml.find('.//{http://www.w3.org/2003/05/soap-envelope}Body/{https://ws.creditinfo.com}UploadZippedDataResponse/{https://ws.creditinfo.com}UploadZippedDataResult/CigResult/Result/Batch/Message')
+  if msg:
+    msg_TypeName = msg.attrib['TypeName']
+    msg = msg.find('./Description').text
+
+    return f'\t\t{msg_TypeName}: {msg}\n\t\tBatch: id {ba_id} status {ba_statId}\n\t\t{ba_statName}'
+  return f'\t\tSuccess! Batch: id {ba_id} status {ba_statId}\n\t\t{ba_statName}'
+  
   
 def formatXML(xmlText):
   import xml.dom.minidom
@@ -71,4 +86,6 @@ def formatXML(xmlText):
   return xml.toprettyxml()
 
 if __name__ == '__main__':
-  zip1('./xml/5_3581801921_1.xml')
+  f = open('.\\responses\-.xml').read()
+  vals = getXmlValues(f)
+  print(vals)

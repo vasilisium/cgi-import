@@ -27,12 +27,12 @@ def post(zipData):
   return [response.status_code, response.text]
 
 if __name__ == '__main__':
-  from utils import writeXml, formatXML, getXmlValues, toBase64, zip
-  # zipF = zip('./xml/5_3581801921_1.xml')
-  data = toBase64('./zip/5_3581801921_1.zip')
-  resp = post(data)
+  from utils import writeXml, formatXML, getXmlValues, toBase64, zip, zip1
+  # zipF = zip1('./xml/3_3222222218.xml')
+  # data = toBase64(zipF)
+  resp = post('data')
   xml = formatXML(resp[1])
   xml = writeXml('mock', xml)
   xml = open(xml,'r').read()
-  res = getXmlValues(xml)
-  print(res)
+  # res = getXmlValues(xml)
+  # print(res)
